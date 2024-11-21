@@ -1,8 +1,8 @@
 # string-manip-benchmark
 
-**Benchmarks for the Rust library string_manipulation**
+**Benchmarks for the Rust library string_manipulation_utf8**
 
-This code was used for simple benchmarking on multiple implementations of string manipulation functions, to be used in the Rust library [string_manipulation](https://github.com/guntherwillems/rust-string-manipulation). All functions use character indexing instead of bytes. It uses UTF-8 encoded strings as implemented in Rust.
+This code was used for simple benchmarking on multiple implementations of string manipulation functions, to be used in the Rust library [string_manipulation_utf8](https://github.com/guntherwillems/rust-string-manipulation-utf8). All functions use character indexing instead of bytes. It uses UTF-8 encoded strings as implemented in Rust.
 
 To start the benchmarks:  
 `cargo run --release`
