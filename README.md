@@ -19,7 +19,9 @@ Get the character position from one string into another. Start searching from ch
 
 `indexof(s: &str, searchstring: &str, start_index: usize) -> Option<usize>`
 
-- indexof:  using loop over chars() (**faster**)
+- indexof:  using loop over chars()
+- indexof1a: indexof code with temporary iterator main string s (**faster**)
+- indexof1b: indexof1a code with also temporary iterator for searchstring
 - indexof2: using enumerate
 - indexof3: using vectors
 - indexof4: loop chars() iterator and count bytes until .find() position

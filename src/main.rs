@@ -1,12 +1,12 @@
 use std::time::{Duration, Instant};
-use string_manip_benchmark::*;
 use string_manip_benchmark::str_concat;
+use string_manip_benchmark::*;
 
 fn main() {
     let loops: usize = 10;
     let total_words_u: usize = 1000; // How many times to repeat 'test_str' before and after 'find_str'
 
-    let test_str: &str = "tést "; // é has 2 bytes 
+    let test_str: &str = "tést "; // é has 2 bytes
     let find_str: &str = "find me "; // Text tu put in the middle
 
     // String lengths
@@ -32,11 +32,21 @@ fn main() {
 
     // -------------------------------------------------------------------------
 
-    println!("indexof,indexof2,indexof3,indexof4,indexof5,indexof6,indexof7");
+    println!("indexof,indexof1a,indexof1b,indexof2,indexof3,indexof4,indexof5,indexof6,indexof7");
 
     for _ in 0..loops {
         start_time = Instant::now();
         let _result: usize = indexof(&s, &find_str, 0).unwrap();
+        elapsed_time = start_time.elapsed();
+        print!("{:?},", elapsed_time.as_nanos());
+
+        start_time = Instant::now();
+        let _result: usize = indexof1a(&s, &find_str, 0).unwrap();
+        elapsed_time = start_time.elapsed();
+        print!("{:?},", elapsed_time.as_nanos());
+
+        start_time = Instant::now();
+        let _result: usize = indexof1b(&s, &find_str, 0).unwrap();
         elapsed_time = start_time.elapsed();
         print!("{:?},", elapsed_time.as_nanos());
 

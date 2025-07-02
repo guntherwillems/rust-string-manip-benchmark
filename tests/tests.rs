@@ -9,11 +9,55 @@ fn test_indexof() {
 
     assert_eq!(indexof(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof(s1, &searchstring, 19), None);
     assert_eq!(indexof(s1, "123", 8), Some(14));
     assert_eq!(indexof(s1, "home", 10), Some(23));
     assert_eq!(indexof(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof(s1, "not found", 0), None);
+    assert_eq!(indexof("", "not found", 0), None);
+    assert_eq!(indexof("", "not found", 10), None);
+}
+
+// -----------------------------------------------------------------------------
+
+#[test]
+fn test_indexof1a() {
+    let s1: &str = "Test 123 éèçà 123 test home";
+    let searchstring: String = "test".to_owned();
+
+    assert_eq!(indexof1a(s1, &searchstring, 0), Some(18));
+    assert_eq!(indexof1a(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof1a(s1, &searchstring, 19), None);
+    assert_eq!(indexof1a(s1, "123", 8), Some(14));
+    assert_eq!(indexof1a(s1, "home", 10), Some(23));
+    assert_eq!(indexof1a(s1, "home", 100), None); // Out of bounds
+    assert_eq!(indexof1a(s1, "", 0), None); // Search nothing
+    assert_eq!(indexof1a(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof1a(s1, "not found", 0), None);
+    assert_eq!(indexof1a("", "not found", 0), None);
+    assert_eq!(indexof1a("", "not found", 10), None);
+}
+
+// -----------------------------------------------------------------------------
+
+#[test]
+fn test_indexof1b() {
+    let s1: &str = "Test 123 éèçà 123 test home";
+    let searchstring: String = "test".to_owned();
+
+    assert_eq!(indexof1b(s1, &searchstring, 0), Some(18));
+    assert_eq!(indexof1b(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof1b(s1, &searchstring, 19), None);
+    assert_eq!(indexof1b(s1, "123", 8), Some(14));
+    assert_eq!(indexof1b(s1, "home", 10), Some(23));
+    assert_eq!(indexof1b(s1, "home", 100), None); // Out of bounds
+    assert_eq!(indexof1b(s1, "", 0), None); // Search nothing
+    assert_eq!(indexof1b(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof1b(s1, "not found", 0), None);
+    assert_eq!(indexof1b("", "not found", 0), None);
+    assert_eq!(indexof1b("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -25,11 +69,15 @@ fn test_indexof2() {
 
     assert_eq!(indexof2(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof2(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof2(s1, &searchstring, 19), None);
     assert_eq!(indexof2(s1, "123", 8), Some(14));
     assert_eq!(indexof2(s1, "home", 10), Some(23));
     assert_eq!(indexof2(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof2(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof2(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof2(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof2(s1, "not found", 0), None);
+    assert_eq!(indexof2("", "not found", 0), None);
+    assert_eq!(indexof2("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -41,11 +89,15 @@ fn test_indexof3() {
 
     assert_eq!(indexof3(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof3(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof3(s1, &searchstring, 19), None);
     assert_eq!(indexof3(s1, "123", 8), Some(14));
     assert_eq!(indexof3(s1, "home", 10), Some(23));
     assert_eq!(indexof3(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof3(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof3(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof3(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof3(s1, "not found", 0), None);
+    assert_eq!(indexof3("", "not found", 0), None);
+    assert_eq!(indexof3("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -57,11 +109,15 @@ fn test_indexof4() {
 
     assert_eq!(indexof4(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof4(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof4(s1, &searchstring, 19), None);
     assert_eq!(indexof4(s1, "123", 8), Some(14));
     assert_eq!(indexof4(s1, "home", 10), Some(23));
     assert_eq!(indexof4(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof4(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof4(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof4(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof4(s1, "not found", 0), None);
+    assert_eq!(indexof4("", "not found", 0), None);
+    assert_eq!(indexof4("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -73,11 +129,15 @@ fn test_indexof5() {
 
     assert_eq!(indexof5(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof5(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof5(s1, &searchstring, 19), None);
     assert_eq!(indexof5(s1, "123", 8), Some(14));
     assert_eq!(indexof5(s1, "home", 10), Some(23));
     assert_eq!(indexof5(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof5(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof5(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof5(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof5(s1, "not found", 0), None);
+    assert_eq!(indexof5("", "not found", 0), None);
+    assert_eq!(indexof5("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -89,11 +149,15 @@ fn test_indexof6() {
 
     assert_eq!(indexof6(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof6(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof6(s1, &searchstring, 19), None);
     assert_eq!(indexof6(s1, "123", 8), Some(14));
     assert_eq!(indexof6(s1, "home", 10), Some(23));
     assert_eq!(indexof6(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof6(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof6(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof6(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof6(s1, "not found", 0), None);
+    assert_eq!(indexof6("", "not found", 0), None);
+    assert_eq!(indexof6("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------
@@ -105,11 +169,15 @@ fn test_indexof7() {
 
     assert_eq!(indexof7(s1, &searchstring, 0), Some(18));
     assert_eq!(indexof7(s1, &searchstring, 10), Some(18));
+    assert_eq!(indexof7(s1, &searchstring, 19), None);
     assert_eq!(indexof7(s1, "123", 8), Some(14));
     assert_eq!(indexof7(s1, "home", 10), Some(23));
     assert_eq!(indexof7(s1, "home", 100), None); // Out of bounds
     assert_eq!(indexof7(s1, "", 0), None); // Search nothing
-    assert_eq!(indexof7(s1, "not found", 0), None); // Not found
+    assert_eq!(indexof7(s1, "", 10), None); // Search nothing
+    assert_eq!(indexof7(s1, "not found", 0), None);
+    assert_eq!(indexof7("", "not found", 0), None);
+    assert_eq!(indexof7("", "not found", 10), None);
 }
 
 // -----------------------------------------------------------------------------

@@ -85,6 +85,98 @@ pub fn indexof(s: &str, searchstring: &str, start_index: usize) -> Option<usize>
 
 // -----------------------------------------------------------------------------
 
+/// Same code as indexof, replacing chars().nth(next_index) with one chars iterator for each searchstring loop.
+/// Fastest.
+pub fn indexof1a(s: &str, searchstring: &str, start_index: usize) -> Option<usize> {
+    if searchstring.is_empty() {
+        return None;
+    }
+
+    let mut char_index: usize = start_index;
+    let search_len: usize = searchstring.chars().count();
+    let total_len: usize = s.len();
+    let mut match_count: usize;
+    let mut next_index: usize;
+    let mut self_tmp: std::iter::Skip<std::str::Chars<'_>>;
+
+    // Iterate through the String characters from start_index
+    for c in s.chars().skip(start_index) {
+        // Relatively fast because searchstring is mostly short
+        if c == searchstring.chars().next().unwrap() {
+            match_count = 1;
+
+            self_tmp = s.chars().skip(char_index + 1);
+            // Check subsequent characters (sc) for a match
+            // sc: char = each subsequent character in searchstring
+            for sc in searchstring.chars().skip(1) {
+                next_index = char_index + match_count;
+                // println!("{} - {} {}", self.chars().nth(next_index).unwrap(), j, sc);
+                if next_index >= total_len || self_tmp.next().unwrap() != sc {
+                    break;
+                }
+                match_count += 1;
+            }
+            // If entire search value matches, return index
+            if match_count == search_len {
+                return Some(char_index);
+            }
+        }
+        char_index += 1;
+    }
+
+    // No match found
+    None
+}
+
+// -----------------------------------------------------------------------------
+
+/// Same code as indexof, replacing chars().nth(next_index) with one chars iterator for each searchstring loop.
+/// Using a variable for temporary searchstring chars.
+pub fn indexof1b(s: &str, searchstring: &str, start_index: usize) -> Option<usize> {
+    if searchstring.is_empty() {
+        return None;
+    }
+
+    let mut char_index: usize = start_index;
+    let search_len: usize = searchstring.chars().count();
+    let total_len: usize = s.len();
+    let mut match_count: usize;
+    let mut next_index: usize;
+    let mut self_tmp: std::iter::Skip<std::str::Chars<'_>>;
+    let mut search_tmp: std::str::Chars<'_>;
+
+    // Iterate through the String characters from start_index
+    for c in s.chars().skip(start_index) {
+        search_tmp = searchstring.chars();
+        // Relatively fast because searchstring is mostly short
+        if c == search_tmp.next().unwrap() {
+            match_count = 1;
+
+            self_tmp = s.chars().skip(char_index + 1);
+            // Check subsequent characters (sc) for a match
+            // sc: char = each subsequent character in searchstring
+            for sc in search_tmp {
+                next_index = char_index + match_count;
+                // println!("{} - {} {}", self.chars().nth(next_index).unwrap(), j, sc);
+                if next_index >= total_len || self_tmp.next().unwrap() != sc {
+                    break;
+                }
+                match_count += 1;
+            }
+            // If entire search value matches, return index
+            if match_count == search_len {
+                return Some(char_index);
+            }
+        }
+        char_index += 1;
+    }
+
+    // No match found
+    None
+}
+
+// -----------------------------------------------------------------------------
+
 /// Using enumerate
 pub fn indexof2(s: &str, searchstring: &str, start_index: usize) -> Option<usize> {
     if searchstring.is_empty() {
@@ -194,7 +286,7 @@ pub fn indexof4(s: &str, searchstring: &str, start_index: usize) -> Option<usize
 
 // Populate a vector with characters as they are used
 pub fn indexof5(s: &str, searchstring: &str, start_index: usize) -> Option<usize> {
-    if searchstring.is_empty() {
+    if s.is_empty() || searchstring.is_empty() {
         return None;
     }
 
@@ -432,8 +524,7 @@ fn calc_start_end(total_length: usize, start_index: isize, length: isize) -> (us
     if total_length == 0
         || length == 0
         || start_index < -total_length
-        || start_index >= total_length
-    {
+        || start_index >= total_length {
         return (0, 0);
     }
 
@@ -498,8 +589,9 @@ pub fn str_remove(s: &str, start_index: usize, length: usize) -> String {
 
 // Remove characters by adding 2 character iterators with + operator.
 pub fn str_remove2(s: &str, start_index: usize, length: usize) -> String {
-    s.chars().take(start_index).collect::<String>()
-        + &s.chars().skip(start_index + length).collect::<String>()
+    s.chars().take(start_index).collect::<String>() 
+        + &s.chars().skip(start_index
+        + length).collect::<String>()
 }
 
 // -------------------------------------------------------------------------
